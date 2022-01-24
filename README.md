@@ -1,9 +1,9 @@
 # ROS2_galactic Tutorial
 
-1, [ROS2_galactic Installtion](## 1, ROS2_galactic Installtion)
-2, [I Publisher and Subscriber](### I Publisher and Subscriber)
-3, [II Client and Service](### II Client and Service)
-4, [IV Add msg and srv)(### IV Add msg and srv)
+1, [ROS2_galactic Installtion](##1, ROS2_galactic Installtion)
+2, [I Publisher and Subscriber](# I Publisher and Subscriber)
+3, [II Client and Service](# II Client and Service)
+4, [IV Add msg and srv](# IV Add msg and srv)
 
 ## 1, ROS2_galactic Installtion
 
