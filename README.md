@@ -60,7 +60,7 @@ In another terminal window
 
 ## 2, ROS2_galactic tutorial
 
-### Launch
+### 1,Launch
 Open a new terminal and run:
 
     ros2 launch turtlesim multisim.launch.py
@@ -72,3 +72,58 @@ In the second terminal:
 In the third terminal:
 
     ros2 topic pub  /turtlesim2/turtle1/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 2.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 1.8}}"
+    
+### 2, Publisher and Subscriber
+#### Step1: Create a package:
+    
+    ros2 pkg create --build-type ament_python py_pubsub
+    
+#### Step2: write a publisher.py file:
+    wget https://raw.githubusercontent.com/ros2/examples/master/rclpy/topics/minimal_publisher/examples_rclpy_minimal_publisher/publisher_member_function.py
+
+#### Step3: write a subscriber.py file:
+
+    wget https://raw.githubusercontent.com/ros2/examples/master/rclpy/topics/minimal_subscriber/examples_rclpy_minimal_subscriber/subscriber_member_function.py
+    
+#### Step4: add dependencies:
+Open 'package.xml' with the text editor, fill 
+
+    <description>Examples of minimal publisher/subscriber using rclpy</description>
+    <maintainer email="pijuanyu2020@gmail">Pijuan Yu</maintainer>
+    <license>Apache License 2.0</license>
+    
+After the lines above, add the following dependencies corresponding to your node’s import statements:
+
+    <exec_depend>rclpy</exec_depend>
+    <exec_depend>std_msgs</exec_depend>
+    
+#### Step5: Add an entry point:
+Open the setup.py file. Match the maintainer:
+
+    maintainer='Pijuan Yu',
+    maintainer_email='pijuanyu2020@gmail.com',
+    description='Examples of minimal publisher/subscriber using rclpy',
+    license='Apache License 2.0',
+    
+Add the following line within the console_scripts brackets of the entry_points field:
+
+    entry_points={
+            'console_scripts': [
+                    'minimal_publisher = py_pubsub.publisher_member_function:main',
+                    'minimal_subscriber = py_pubsub.subscriber_member_function:main',
+            ],
+    },
+   
+Note: minimal_publisher and minimal_subscriber are used to launch the node, it is not the rostopic name and the node name
+
+#### Step6: run the publisher node and subscriber node
+
+    colcon build --packages-select py_pubsub
+    
+    . install/setup.bash
+    
+    ros2 run py_pubsub minimal_publisher
+    
+    ros2 run py_pubsub minimal_subscriber
+    
+    
