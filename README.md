@@ -1,12 +1,12 @@
 # ROS2_galactic Tutorial
 
 ## Table of contents
-1. [ROS2_galactic Installtion](#Installtion)
+1. [ROS2_galactic Installtion](#I Installtion)
 2. [I Publisher and Subscriber](#I Publisher and Subscriber)
 3. [II Client and Service](#II Client and Service)
 4. [IV Add msg and srv](#IV Add msg and srv)
 
-## 1, ROS2_galactic Installtion <a name="Installtion"></a>
+## 1, ROS2_galactic Installtion <a name="I Installtion"></a>
 
 Here is the tutorial from the ROS2 Documentation. http://docs.ros.org/en/galactic/Installation/Ubuntu-Install-Binary.html. I recommendate to run the ROS2 in linux environment. Right now, I am using Ubuntu 20.04 to run the ROS2 and the robot simulation. To install ubuntu 20.04 in your computer, please read this website and follow these instructions.https://ubuntu.com/download/desktop 
 
