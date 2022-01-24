@@ -127,3 +127,58 @@ Note: minimal_publisher and minimal_subscriber are used to launch the node, it i
     ros2 run py_pubsub minimal_subscriber
     
     
+### 3,client and service
+
+#### Step1: Create a package
+
+    ros2 pkg create --build-type ament_python py_srvcli --dependencies rclpy example_interfaces
+
+example_interfaces is the package that includes the .srv file you will need to structure your requests and responses:
+
+    int64 a
+    int64 b
+    ---
+    int64 sum
+  
+#### Step2: Write the service_member_function.py and client_member_function.py
+See the code in the package
+
+#### Step3: Update pakcage.xml
+Open package.xml:
+
+    <description>This package is used to create a client and a service so that two intergers can be added</description>
+    <maintainer email="pijuanyu2020@gmail">Pijuan Yu</maintainer>
+    <license>Apache License 2.0</license>
+    
+#### Step4: Update setup.py
+Open the setup.py file. Match the maintainer:
+
+    maintainer='Pijuan Yu',
+    maintainer_email='pijuanyu2020@gmail.com',
+    description='This package is used to create a client and a service so that two intergers can be added',
+    license='Apache License 2.0',
+    
+Add the following line within the console_scripts brackets of the entry_points field:
+
+    entry_points={
+            'console_scripts': [
+                'service = py_service.service_member_function:main',
+                'client = py_service.client_member_function:main',
+            ],
+    },
+
+#### Step5: Build and Run
+
+    colcon build
+    
+    . install/setup.bash
+    
+    ros2 run py_srvcli service
+    
+    ros2 run py_srvcli client 4 5
+   
+    
+    
+
+
+    
