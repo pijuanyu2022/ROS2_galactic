@@ -1,12 +1,10 @@
-## ROS2_galactic
+# ROS2_galactic Tutorial
 
-### ROS Installtion
+## 1, ROS2_galactic Installtion
 
 Here is the tutorial from the ROS2 Documentation. http://docs.ros.org/en/galactic/Installation/Ubuntu-Install-Binary.html. I recommendate to run the ROS2 in linux environment. Right now, I am using Ubuntu 20.04 to run the ROS2 and the robot simulation. To install ubuntu 20.04 in your computer, please read this website and follow these instructions.https://ubuntu.com/download/desktop 
 
-#### Ubuntu install of ROS2 Galactic
-
-Step1: Add the ROS 2 apt repository. 
+#### Step1: Add the ROS 2 apt repository. 
 
 Use Ctrl+alt+T to open a new terminal window to Setup your sources.list. Then input 
 
@@ -20,7 +18,7 @@ Use Ctrl+alt+T to open a new terminal window to Setup your sources.list. Then in
 
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(source /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
 
-Step2: Downloading ROS 2. 
+#### Step2: Downloading ROS 2. 
 
 Go to this website https://github.com/ros2/ros2/releases/tag/release-galactic-20210716 and downlaod the ros2-galactic-20210616-linux-focal-amd64.tar.bz2 file. Then unpack it:
 
@@ -30,7 +28,7 @@ Go to this website https://github.com/ros2/ros2/releases/tag/release-galactic-20
 
     tar xf ~/Downloads/ros2-galactic-20210616-linux-focal-amd64.tar.bz2
 
-Step3: Installing and initializing rosdep
+#### Step3: Installing and initializing rosdep
 
     sudo apt update
 
@@ -44,11 +42,11 @@ Step3: Installing and initializing rosdep
 
     sudo apt install -y libpython3-dev python3-pip
 
-Step4: Environment setup
+#### Step4: Environment setup
 
     . ~/ros2_galactic/ros2-linux/setup.bash
 
-Step5: Test ROS2 Galactic
+#### Step5: Test ROS2 Galactic
 
 In one teriminal window
     . ~/ros2_galactic/ros2-linux/setup.bash
@@ -59,3 +57,16 @@ In another terminal window
     . ~/ros2_galactic/ros2-linux/setup.bash
     
     ros2 run demo_nodes_py listener
+
+## 2, ROS2_galactic tutorial
+
+### Launch
+Open a new terminal and run:
+
+    ros2 launch turtlesim multisim.launch.py
+    
+In the second terminal:
+    ros2 topic pub  /turtlesim1/turtle1/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 2.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 1.8}}"
+
+In the third terminal:
+    ros2 topic pub  /turtlesim2/turtle1/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 2.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 1.8}}"
