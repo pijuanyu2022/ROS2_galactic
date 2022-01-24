@@ -60,7 +60,7 @@ In another terminal window
 
 ## 2, ROS2_galactic tutorial
 
-### 1,Launch
+### I,Launch
 Open a new terminal and run:
 
     ros2 launch turtlesim multisim.launch.py
@@ -73,7 +73,7 @@ In the third terminal:
 
     ros2 topic pub  /turtlesim2/turtle1/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 2.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 1.8}}"
     
-### 2, Publisher and Subscriber
+### II, Publisher and Subscriber
 #### Step1: Create a package:
     
     ros2 pkg create --build-type ament_python py_pubsub
@@ -127,7 +127,7 @@ Note: minimal_publisher and minimal_subscriber are used to launch the node, it i
     ros2 run py_pubsub minimal_subscriber
     
     
-### 3,client and service
+### III,Client and Service
 
 #### Step1: Create a package
 
@@ -176,7 +176,78 @@ Add the following line within the console_scripts brackets of the entry_points f
     ros2 run py_srvcli service
     
     ros2 run py_srvcli client 4 5
-   
+    
+ 
+### IV, Add msg and srv
+ 
+#### Step1: create a new package
+
+    ros2 pkg create --build-type ament_cmake tutorial_interfaces
+
+In ros2_ws/src/tutorial_interfaces:
+    
+    mkdir msg
+    
+    mkdir srv
+
+#### Step2: create custom files
+In the tutorial_interfaces/msg directory:
+    
+    touch Num.msg
+    
+add these lines into the 'Num.msg' file
+    
+    int64 num
+ 
+In the tutorial_interfaces/srv directory:
+
+    touch AddThreeInts.srv
+
+add these lines into the 'AddThreeInts.srv' file
+
+    int64 a
+    int64 b
+    int64 c
+    ---
+    int64 sum
+
+#### Step3: Update CMakeLists.txt
+add these lines to 'CMakeLists.txt':
+
+    find_package(rosidl_default_generators REQUIRED)
+
+    rosidl_generate_interfaces(${PROJECT_NAME}
+      "msg/Num.msg"
+      "srv/AddThreeInts.srv"
+    )
+    
+#### Step4: Update package.xml
+add these lines to package.xml:
+
+    <build_depend>rosidl_default_generators</build_depend>
+
+    <exec_depend>rosidl_default_runtime</exec_depend>
+
+    <member_of_group>rosidl_interface_packages</member_of_group>
+
+#### Step5: Build and confirm
+
+    colcon build
+    
+    . install/setup.bash
+    
+    ros2 interface show tutorial_interfaces/msg/Num
+    
+    ros2 interface show tutorial_interfaces/srv/AddThreeInts
+
+#### Step6: Use the new interfaces
+In the python file, add this line to use 
+
+    from tutorial_interfaces.srv import AddThreeInts  
+    
+In the package.xml:
+    <exec_depend>tutorial_interfaces</exec_depend>
+    
     
     
 
