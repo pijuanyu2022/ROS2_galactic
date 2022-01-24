@@ -1,5 +1,10 @@
 # ROS2_galactic Tutorial
 
+1, [ROS2_galactic Installtion](## 1, ROS2_galactic Installtion)
+2, [I Publisher and Subscriber](### I Publisher and Subscriber)
+3, [II Client and Service](### II Client and Service)
+4, [IV Add msg and srv)(### IV Add msg and srv)
+
 ## 1, ROS2_galactic Installtion
 
 Here is the tutorial from the ROS2 Documentation. http://docs.ros.org/en/galactic/Installation/Ubuntu-Install-Binary.html. I recommendate to run the ROS2 in linux environment. Right now, I am using Ubuntu 20.04 to run the ROS2 and the robot simulation. To install ubuntu 20.04 in your computer, please read this website and follow these instructions.https://ubuntu.com/download/desktop 
@@ -59,21 +64,8 @@ In another terminal window
     ros2 run demo_nodes_py listener
 
 ## 2, ROS2_galactic tutorial
-
-### I,Launch
-Open a new terminal and run:
-
-    ros2 launch turtlesim multisim.launch.py
     
-In the second terminal:
-
-    ros2 topic pub  /turtlesim1/turtle1/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 2.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 1.8}}"
-
-In the third terminal:
-
-    ros2 topic pub  /turtlesim2/turtle1/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 2.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 1.8}}"
-    
-### II, Publisher and Subscriber
+### I Publisher and Subscriber
 #### Step1: Create a package:
     
     ros2 pkg create --build-type ament_python py_pubsub
@@ -127,7 +119,7 @@ Note: minimal_publisher and minimal_subscriber are used to launch the node, it i
     ros2 run py_pubsub minimal_subscriber
     
     
-### III,Client and Service
+### II Client and Service
 
 #### Step1: Create a package
 
@@ -178,7 +170,7 @@ Add the following line within the console_scripts brackets of the entry_points f
     ros2 run py_srvcli client 4 5
     
  
-### IV, Add msg and srv
+### IV Add msg and srv
  
 #### Step1: create a new package
 
