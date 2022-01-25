@@ -1,12 +1,12 @@
 # ROS2_galactic Tutorial
 
 ## Table of contents
-1. [ROS2_galactic Installtion](#I Installtion)
-2. [I Publisher and Subscriber](#I Publisher and Subscriber)
-3. [II Client and Service](#II Client and Service)
-4. [IV Add msg and srv](#IV Add msg and srv)
+1. [ROS2_galactic Installtion](#Installtion)
+2. [I Publisher and Subscriber](#Publisher_and_Subscriber)
+3. [II Client and Service](#Client_and_Service)
+4. [IV Add msg and srv](#msg_and_srv)
 
-## 1, ROS2_galactic Installtion <a name="I Installtion"></a>
+## 1, ROS2_galactic Installtion <a name="Installtion"></a>
 
 Here is the tutorial from the ROS2 Documentation. http://docs.ros.org/en/galactic/Installation/Ubuntu-Install-Binary.html. I recommendate to run the ROS2 in linux environment. Right now, I am using Ubuntu 20.04 to run the ROS2 and the robot simulation. To install ubuntu 20.04 in your computer, please read this website and follow these instructions.https://ubuntu.com/download/desktop 
 
@@ -66,7 +66,7 @@ In another terminal window
 
 ## 2, ROS2_galactic tutorial
     
-### I Publisher and Subscriber
+### I Publisher and Subscriber <a name="Publisher_and_Subscriber"></a>
 #### Step1: Create a package:
     
     ros2 pkg create --build-type ament_python py_pubsub
@@ -120,7 +120,7 @@ Note: minimal_publisher and minimal_subscriber are used to launch the node, it i
     ros2 run py_pubsub minimal_subscriber
     
     
-### II Client and Service
+### II Client and Service <a name="Client_and_Service"></a>
 
 #### Step1: Create a package
 
@@ -171,7 +171,7 @@ Add the following line within the console_scripts brackets of the entry_points f
     ros2 run py_srvcli client 4 5
     
  
-### IV Add msg and srv
+### IV Add msg and srv <a name="msg_and_srv"></a>
  
 #### Step1: create a new package
 
