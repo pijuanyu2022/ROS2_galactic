@@ -4,15 +4,15 @@
 
 [ROS2_galactic Installtion](#Installtion)
 
-[I Publisher and Subscriber](#Publisher_and_Subscriber)
+[1. Publisher and Subscriber](#Publisher_and_Subscriber)
 
-[II Client and Service](#Client_and_Service)
+[2. Client and Service](#Client_and_Service)
 
-[III Add msg and srv](#msg_and_srv)
+[3. Add msg and srv](#msg_and_srv)
 
-[IV Parameter](#parameter)
+[4. Parameter](#parameter)
 
-[V Action client and server](#action)
+[5. Action client and server](#action)
 
 ## 1, ROS2_galactic Installtion <a name="Installtion"></a>
 
