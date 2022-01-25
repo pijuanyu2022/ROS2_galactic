@@ -12,6 +12,8 @@
 
 [IV Parameter](#parameter)
 
+[V Action client and server](#action)
+
 ## 1, ROS2_galactic Installtion <a name="Installtion"></a>
 
 Here is the tutorial from the ROS2 Documentation. http://docs.ros.org/en/galactic/Installation/Ubuntu-Install-Binary.html. I recommendate to run the ROS2 in linux environment. Right now, I am using Ubuntu 20.04 to run the ROS2 and the robot simulation. To install ubuntu 20.04 in your computer, please read this website and follow these instructions.https://ubuntu.com/download/desktop 
@@ -340,5 +342,61 @@ In the terminal:
     
     ros2 launch python_parameters python_parameters_launch.py
     
-
+### Action client and Server <a name="action"></a>
+custom-define actions in your packages
+#### Step1: create a action interface
     
+    ros2 pkg create action_tutorials_interfaces
+    
+    cd action_tutorials_interfaces
+    
+    mkdir action
+    
+    touch Fibonacci.action
+
+Write these lines in the Fibonacci.action
+
+    int32 order
+    ---
+    int32[] sequence
+    ---
+    int32[] partial_sequence
+
+#### Step2: build the action interface
+In the CMakeLists.txt:
+
+    find_package(rosidl_default_generators REQUIRED)
+
+    rosidl_generate_interfaces(${PROJECT_NAME}
+      "action/Fibonacci.action"
+    )
+
+In the package.xml:
+
+    <buildtool_depend>rosidl_default_generators</buildtool_depend>
+
+    <depend>action_msgs</depend>
+
+    <member_of_group>rosidl_interface_packages</member_of_group>
+    
+In the terminal window:
+
+    colcon build
+    
+    . install/setup.bash
+    
+    ros2 interface show action_tutorials_interfaces/action/Fibonacci
+
+#### Step3: create a new package for the action server and client
+
+    ros2 pkg create --build-type ament_python py_action --dependencies rclpy action_tutorials_interfaces
+    
+#### Step4: write the action server and client
+
+See the uploaded files
+
+#### Step5: run the code
+
+    python3 fibonacci_action_server.py
+    
+    python3 fibonacci_action_client.py
