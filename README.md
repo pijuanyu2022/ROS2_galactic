@@ -2,15 +2,15 @@
 
 ## Table of contents
 
-1.[ROS2_galactic Installtion](#Installtion)
+[ROS2_galactic Installtion](#Installtion)
 
-2.[I Publisher and Subscriber](#Publisher_and_Subscriber)
+[I Publisher and Subscriber](#Publisher_and_Subscriber)
 
-3.[II Client and Service](#Client_and_Service)
+[II Client and Service](#Client_and_Service)
 
-4.[III Add msg and srv](#msg_and_srv)
+[III Add msg and srv](#msg_and_srv)
 
-5.[IV Parameter](#parameter)
+[IV Parameter](#parameter)
 
 ## 1, ROS2_galactic Installtion <a name="Installtion"></a>
 
