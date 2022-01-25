@@ -1,10 +1,11 @@
 # ROS2_galactic Tutorial
 
 ## Table of contents
-1. [ROS2_galactic Installtion](#Installtion)
-2. [I Publisher and Subscriber](#Publisher_and_Subscriber)
-3. [II Client and Service](#Client_and_Service)
-4. [III Add msg and srv](#msg_and_srv)
+[ROS2_galactic Installtion](#Installtion)
+[I Publisher and Subscriber](#Publisher_and_Subscriber)
+[II Client and Service](#Client_and_Service)
+[III Add msg and srv](#msg_and_srv)
+[IV Parameter](#parameter)
 
 ## 1, ROS2_galactic Installtion <a name="Installtion"></a>
 
@@ -241,8 +242,98 @@ In the python file, add this line to use
 In the package.xml:
     <exec_depend>tutorial_interfaces</exec_depend>
     
-    
-    
+### IV Parameter <a name="parameter"></a>
+Use parameter in ROS2
+#### Step1: create a package
 
+    ros2 pkg create --build-type ament_python python_parameters --dependencies rclpy
+    
+#### Step2: write a python_parameters_node.py file
+see the uploaded file 
+
+#### Step3: Update pakcage.xml
+Open package.xml:
+
+    <description>Parameter tutorial</description>
+    <maintainer email="pijuanyu2020@gmail">Pijuan Yu</maintainer>
+    <license>Apache License 2.0</license>
+    
+#### Step4: Update setup.py
+Open the setup.py file. Match the maintainer:
+
+    maintainer='Pijuan Yu',
+    maintainer_email='pijuanyu2020@gmail.com',
+    description='Parameter tutorial',
+    license='Apache License 2.0',
+    
+Add the following line within the console_scripts brackets of the entry_points field:
+
+    entry_points={
+            'console_scripts': [
+                'param_talker = python_parameters.python_parameters_node:main',
+            ],
+    },
+
+#### Step5: Build and Run
+
+    colcon build
+    
+    . install/setup.bash
+    
+    ros2 run python_parameters param_talker
+    
+#### Step6: Change the parameter via the terminal
+
+    ros2 param list
+    
+    ros2 param set /minimal_param_node my_parameter earth
+    
+#### Step7: Change the parameter via the launch file
+in a new terminal:
+
+    mkdir launch
+    touch python_parameters_launch.py
+    
+Add these lines into the file:
+
+    from launch import LaunchDescription
+    from launch_ros.actions import Node
+
+    def generate_launch_description():
+        return LaunchDescription([
+            Node(
+                package='python_parameters',
+                executable='param_talker',
+                name='custom_parameter_node',
+                output='screen',
+                emulate_tty=True,
+                parameters=[
+                    {'my_parameter': 'earth'}
+                ]
+            )
+        ])
+
+In the setup.py file, add these lines:
+
+    import os
+    from glob import glob
+    # ...
+
+    setup(
+      # ...
+      data_files=[
+          # ...
+          (os.path.join('share', package_name), glob('launch/*_launch.py')),
+        ]
+      )
+
+In the terminal:
+
+    colcon build
+    
+    . install/setup.bash
+    
+    ros2 launch python_parameters python_parameters_launch.py
+    
 
     
