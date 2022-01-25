@@ -1,11 +1,11 @@
 # ROS2_galactic Tutorial
 
 ## Table of contents
-[ROS2_galactic Installtion](#Installtion)
-[I Publisher and Subscriber](#Publisher_and_Subscriber)
-[II Client and Service](#Client_and_Service)
-[III Add msg and srv](#msg_and_srv)
-[IV Parameter](#parameter)
+1.[ROS2_galactic Installtion](#Installtion)
+2.[I Publisher and Subscriber](#Publisher_and_Subscriber)
+3.[II Client and Service](#Client_and_Service)
+4.[III Add msg and srv](#msg_and_srv)
+5.[IV Parameter](#parameter)
 
 ## 1, ROS2_galactic Installtion <a name="Installtion"></a>
 
