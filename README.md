@@ -14,6 +14,8 @@
 
 [5. Action client and server](#action)
 
+[6. Launch](#launch)
+
 ## 1, ROS2_galactic Installtion <a name="Installtion"></a>
 
 Here is the tutorial from the ROS2 Documentation. http://docs.ros.org/en/galactic/Installation/Ubuntu-Install-Binary.html. I recommendate to run the ROS2 in linux environment. Right now, I am using Ubuntu 20.04 to run the ROS2 and the robot simulation. To install ubuntu 20.04 in your computer, please read this website and follow these instructions.https://ubuntu.com/download/desktop 
@@ -342,7 +344,7 @@ In the terminal:
     
     ros2 launch python_parameters python_parameters_launch.py
     
-### Action client and Server <a name="action"></a>
+### V Action client and Server <a name="action"></a>
 custom-define actions in your packages
 #### Step1: create a action interface
     
@@ -400,3 +402,45 @@ See the uploaded files
     python3 fibonacci_action_server.py
     
     python3 fibonacci_action_client.py
+
+### VI Launch <a name="launch"></a>
+#### Create a simple launch file
+    
+    mkdir launch
+    touch example_launch.py
+    
+##### In the example_launch.py file:
+
+    from launch import LaunchDescription
+    from launch_ros.actions import Node
+
+    def generate_launch_description():
+        return LaunchDescription([
+            Node(package='turtlesim', namespace='turtlesim1', executable='turtlesim_node', name='sim'), # use namespace to avoid the conflic of rosnode and rostopic
+            Node(package='turtlesim', namespace='turtlesim2', executable='turtlesim_node', name='sim'),
+            Node(package='turtlesim', executable='mimic', name='mimic', 
+                 remappings=[('/input/pose', '/turtlesim1/turtle1/pose'),          # before subscribe /input/pose, right now subscribe /turtlesim1/turtle1/pose
+                             ('/output/cmd_vel', '/turtlesim2/turtle1/cmd_vel'),]  # before publish /output/cmd_vel, right now publish /turtlesim2/turtle1/cmd_vel
+                )
+        ])
+
+##### In the package.xml:
+
+    <exec_depend>ros2launch</exec_depend>
+    
+##### In the setup.py:
+
+    import os
+    from glob import glob
+    
+    data_files=[
+        ('share/ament_index/resource_index/packages',
+            ['resource/' + package_name]),
+        ('share/' + package_name, ['package.xml']),
+        (os.path.join('share', package_name), glob('launch/*_launch.py')),
+    ],
+    
+##### How to run the launch file:
+
+    ros2 launch <package_name> <launch_file_name>
+    
