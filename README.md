@@ -16,6 +16,8 @@
 
 [6. Launch](#launch)
 
+[7. Gazebo](#gazebo)
+
 ## 1, ROS2_galactic Installtion <a name="Installtion"></a>
 
 Here is the tutorial from the ROS2 Documentation. http://docs.ros.org/en/galactic/Installation/Ubuntu-Install-Binary.html. I recommendate to run the ROS2 in linux environment. Right now, I am using Ubuntu 20.04 to run the ROS2 and the robot simulation. To install ubuntu 20.04 in your computer, please read this website and follow these instructions.https://ubuntu.com/download/desktop 
@@ -444,3 +446,20 @@ See the uploaded files
 
     ros2 launch <package_name> <launch_file_name>
     
+### VII Gazebo <a name="gazebo"></a>
+
+#### Step1: Install gazebo with http://gazebosim.org/tutorials?tut=install_ubuntu&cat=install
+
+#### Step2: Install gazebo_ros_pkgs
+
+    sudo apt install ros-galactic-gazebo-ros-pkgs
+    
+#### Step3: Test gazebo
+
+    sudo apt install ros-galactic-ros-core ros-galactic-geometry2
+    
+    gazebo --verbose /opt/ros/galactic/share/gazebo_plugins/worlds/gazebo_ros_diff_drive_demo.world
+    
+    gedit /opt/ros/galactic/share/gazebo_plugins/worlds/gazebo_ros_diff_drive_demo.world
+    
+    ros2 topic pub /demo/cmd_demo geometry_msgs/Twist '{linear: {x: 1.0}}' -1
